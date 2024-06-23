@@ -1,0 +1,39 @@
+---
+import getSheetData from '../fetchData';
+
+interface DataRow {
+  0: string;
+  1: string;
+  2: string;
+}
+
+const data: DataRow[] = await getSheetData();
+---
+<section class="flex justify-center">
+    <table>
+        <thead>
+          <tr>
+            <th class="px-4 text-start">Fecha</th>
+            <th class="px-4 text-center">Compra</th>
+            <th class="px-4 text-center">Venta</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.length > 0 ? (
+            data.map((row) => (
+              <tr>
+                <td class="px-4 text-center">{row[0]}</td>
+                <td class="px-4 text-center">{row[1]}</td>
+                <td class="px-4 text-center">{row[2]}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td>No se pueden recuperar los datos</td>
+            </tr>
+          )}
+        </tbody>
+    </table>
+</section>
+
+
